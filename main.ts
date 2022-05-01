@@ -18,11 +18,6 @@ modules(({ params: { module }, respond }) => {
   respond({ status: 302, headers: { 'location': url } });
 });
 
-const games = server.on('/games/:game')
-games(({ respond, params: { game } }) => {
-  fetch(`file://${ Deno.cwd() }/frontend/pages/games/${ game }/main.html`)
-    .then(async (data) => respond({ body: await data.arrayBuffer(), headers: { 'content-type': 'text/html' } }))
-    .catch(() => respond({ body: '<h1>Error</h1>', status: 404, headers: { 'content-type': 'text/html' } }));
-});
+server.on('/catss')(({ respond }) => respond({ headers: { location: 'https://catss.deno.dev' }, status: 302 }));
 
 server.listen();
