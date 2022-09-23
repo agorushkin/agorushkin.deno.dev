@@ -13,7 +13,7 @@ main(({ respond }) => {
 
 const modules = server.on('/modules/:module', 'GET')
 modules(({ params: { module }, respond }) => {
-  const url = `https://raw.githubusercontent.com/littlemods/${ module }/master/mod.ts`;
+  const url = `https://raw.githubusercontent.com/agorushkin/${ module }/master/mod.ts`;
 
   respond({ status: 302, headers: { 'location': url } });
 });
