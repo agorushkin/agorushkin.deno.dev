@@ -1,0 +1,13 @@
+{
+  "port": 8080,
+  "modules": [
+    { "name": "http", "repo": "http-server", "path": "mod.ts" },
+    { "name": "flags", "repo": "flags", "path": "mod.ts" },
+    { "name": "translate", "repo": "translate", "path": "mod.ts" }
+  ],
+  "projects": [
+    { "icon": "🌐", "name": "http-server", "tooltip": "small http server library", "url": "https://github.com/agorushkin/http-server" },
+    { "icon": "😺", "name": "catss", "tooltip": "small website for viewing cats", "url": "https://cats.deno.dev" },
+    { "icon": "📓", "name": "notebok", "tooltip": "zen mode writer", "url": "https://notebok.deno.dev" }
+  ]
+}
