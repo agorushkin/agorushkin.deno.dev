@@ -2,9 +2,12 @@
   "imports": {
     "/": "./",
     "./": "./",
+
     "preact/render": "https://esm.sh/v124/*preact-render-to-string@6.0.3",
+    "preact/": "https://esm.sh/v124/preact@10.15.1/",
     "preact": "https://esm.sh/v124/preact@10.15.1",
-    "http": "https://raw.githubusercontent.com/agorushkin/http-server/master/mod.ts"
-  },
-  "scopes": {}
+
+    "http": "https://raw.githubusercontent.com/agorushkin/http-server/master/mod.ts",
+    "http/utils": "https://raw.githubusercontent.com/agorushkin/http-server-utils/master/mod.ts"
+  }
 }

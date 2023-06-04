@@ -1,20 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap');
-
 @font-face {
   font-family: 'SF Mono';
-  src: url('/client/assets/font.otf') format('opentype');
+  src: url('/public/assets/font.otf') format('opentype');
+  font-display: swap;
+}
+
+:root {
+  --main-color: #24292e;
+  --accent-color: #77bdfb;
+  --text-color: #e7e7e7;
 }
 
 html, body {
   height: 100%;
   width: 100%;
+
   margin: 0;
   padding: 0;
-  background-color: #24292e;
-  color: #fff;
+
+  background-color: var(--main-color);
+  color: var(--text-color);
+
   font-family: 'SF Mono', monospace;
   font-size: 1em;
   font-display: block;
+
   overflow: hidden;
 }
 
@@ -22,17 +31,27 @@ h3 {
   font-weight: lighter;
 }
 
-.emoji {
-  font-family: 'Noto Color Emoji', sans-serif;
+#about-me {
+  width: 75%;
+}
+
+.fade-in {
+  animation: fade-in 0.5s ease-in-out;
 }
 
 #container {
-  margin: 0 auto;
   width: 40%;
   height: 100%;
+  margin: 0 auto;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+#container.konami {
+  animation: fade-out 0.5s ease-in-out;
+  opacity: 0;
 }
 
 .title {
@@ -46,23 +65,28 @@ h3 {
 }
 
 a {
-  color: #fff;
-  text-decoration: none;
   transition: all 0.10s ease-in-out;
+  
+  text-decoration: none;
+  color: var(--text-color);
+
   display:inline-block;
 }
 
 a:hover {
-  color: #77bdfb;
   transform: scale(1.05);
+
+  color: var(--accent-color);;
 }
 
 a:not(.basiclink)::before {
   font-family: 'Noto Color Emoji', sans-serif;
+
   content: '✨ ';
   opacity: 0;
+  color: var(--text-color);
+
   display: none;
-  color: #fff;
 }
 
 a:not(.basiclink):hover::before {
@@ -78,19 +102,20 @@ a:not(.basiclink):hover {
 ul#projects a::after {
   content: attr(data-title);
   opacity: 0;
+  color: var(--text-color);
+
   display: none;
-  color: #fff;
 }
 
 ul#projects a:hover::after {
-  display: inline;
   opacity: 1;
+  display: inline;
 }
 
 .wave {
+  transform-origin: 70% 70%;
   animation: wave-animation 2.5s infinite;
   display: inline-block;
-  transform-origin: 70% 70%;
 }
 
 @keyframes wave-animation {

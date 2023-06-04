@@ -2,12 +2,18 @@
   "port": 8080,
   "modules": [
     { "name": "http", "repo": "http-server", "path": "mod.ts" },
-    { "name": "flags", "repo": "flags", "path": "mod.ts" },
+    { "name": "http-utils", "repo": "http-server-utils", "path": "mod.ts" },
+    { "name": "flags", "repo": "flag-parser", "path": "mod.ts" },
     { "name": "translate", "repo": "translate", "path": "mod.ts" }
   ],
   "projects": [
     { "icon": "🌐", "name": "http-server", "tooltip": "small http server library", "url": "https://github.com/agorushkin/http-server" },
-    { "icon": "😺", "name": "catss", "tooltip": "small website for viewing cats", "url": "https://cats.deno.dev" },
+    { "icon": "😺", "name": "catss", "tooltip": "small website for viewing cats", "url": "https://catss.deno.dev" },
     { "icon": "📓", "name": "notebok", "tooltip": "zen mode writer", "url": "https://notebok.deno.dev" }
+  ],
+  "contacts": [
+    { "icon": "🐈‍⬛", "name": "GitHub", "url": "https://github.com/agorushkin" },
+    { "icon": "👾", "name": "Discord", "url": "https://discordapp.com/users/827106952500346880" },
+    { "icon": "🔗", "name": "LinkedIn", "url": "https://www.linkedin.com/in/arsenii-goriushkin/" }
   ]
 }

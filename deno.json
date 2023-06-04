@@ -1,14 +1,19 @@
 {
   "importMap": "./import_map.json",
+  "lock": false,
   "compilerOptions": {
     "jsx": "react-jsx",
-    "jsxImportSource": "https://esm.sh/preact"
+    "jsxImportSource": "https://esm.sh/preact",
+
+    "lib": [ "deno.window" ]
   },
   "tasks": {
     "esm:add": "deno run -A https://esm.sh/v124 add",
     "esm:update": "deno run -A https://esm.sh/v124 update",
     "esm:remove": "deno run -A https://esm.sh/v124 remove",
 
-    "start": "deno run -A ./server/server.ts"
+    "start": "deno run -A ./server/server.ts",
+    "debug": "deno run -A --watch ./server/server.ts",
+    "bundle": "deno bundle --watch --config ./client/scripts/deno.json ./client/scripts/main.ts ./public/bundle/main.js"
   }
 }
