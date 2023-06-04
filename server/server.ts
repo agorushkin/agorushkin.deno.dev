@@ -11,8 +11,11 @@ const server = new HttpServer();
 
 server.route('/public/*')(serve('./public', rules));
 
-server.route('/'          )((await import('/server/routes/main.ts'   )).handler);
-server.route('/x/:module' )((await import('/server/routes/modules.ts')).handler);
+import { handler as main    } from '/server/routes/main.ts';
+import { handler as modules } from '/server/routes/modules.ts';
+
+server.route('/'          )(main);
+server.route('/x/:module' )(modules);
 server.route('/robots.txt')(async ({ respond }) => respond(await file('./public/robots.txt')));
 
 server.route('/*')(({ redirect }) => redirect('/'));
