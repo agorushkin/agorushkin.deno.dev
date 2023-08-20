@@ -1,24 +1,41 @@
 import config from '/config.json' assert { type: 'json' };
 import rules  from '/static.json' assert { type: 'json' };
 
-import { HttpServer } from 'http';
+import * as http  from 'http';
+import * as httpu from 'http/utils';
 
-import { serve, file } from 'http/utils';
+import { Portfolio } from '/client/pages/main.tsx';
+
+import { render } from 'preact/render';
 
 const { port } = config;
 
-const server = new HttpServer();
+const server = new http.Server();
 
-server.route('/public/*')(serve('./public', rules));
+server.get('/public/*', httpu.serve('./public', rules));
 
-import { handler as main    } from '/server/routes/main.ts';
-import { handler as modules } from '/server/routes/modules.ts';
+server.get('/', ({ respond }) => {
+  respond({
+    body: `<!DOCTYPE html>${ render(Portfolio()) }`,
+    headers: { 'content-type': 'text/html' },
+  });
+});
 
-server.route('/'          )(main);
-server.route('/x/:module' )(modules);
-server.route('/robots.txt')(async ({ respond }) => respond(await file('./public/robots.txt')));
+server.get('/x/:module', ({ respond, params: { module }, redirect }) => {
+  const [ name, commit ] = module?.split('@') ?? [];
 
-server.route('/*')(({ redirect }) => redirect('/'));
+  const data = config.modules.find(module => module.name === name);
+
+  if (!data) return respond({ status: 404 });
+
+  const url = `https://raw.githubusercontent.com/agorushkin/${ data.repo }/${ commit ?? 'master' }/${ data.path }`;
+
+  redirect(url);
+});
+
+server.get('/robots.txt', async ({ respond }) => respond(await httpu.file('./public/robots.txt')));
+
+server.get('/*', ({ redirect }) => redirect('/'));
 
 server.listen(port);
 console.log(`Server running on port :${ port }`);
