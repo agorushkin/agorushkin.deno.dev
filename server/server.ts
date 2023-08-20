@@ -28,7 +28,7 @@ server.get('/x/:module', ({ respond, params: { module }, redirect }) => {
 
   if (!data) return respond({ status: 404 });
 
-  const url = `https://raw.githubusercontent.com/agorushkin/${ data.repo }/${ commit ?? 'master' }/${ data.path }`;
+  const url = `https://raw.githubusercontent.com/agorushkin/${ data.repo }/${ commit ?? 'main' }/${ data.path }`;
 
   redirect(url);
 });
